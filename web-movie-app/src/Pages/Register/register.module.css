@@ -1,0 +1,66 @@
+.App {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-family: "SF Mono", sans-serif; 
+}
+
+.profile_img{
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-size: contain;
+    border: 2px solid #f5f5f5;
+}
+
+.label{
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+}
+
+.label input {
+    background-color: #303134;
+    border-radius: 12px;
+    font-family: "SF Mono", sans-serif;
+    border-radius: 4px;
+    border: 0px;
+    color: #eee;
+    font-size: 15px;
+    padding: 0 20px 0 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 35px;
+    outline: 0;
+    max-width: 100%;
+    transition: 0.3s;
+    box-shadow: 0 1px 3px rgb(23 23 23 / 24%);
+}
+
+.sub {
+    border-radius: 12px;
+    width: 100%;
+    background-color: #08d;
+    border: 0px;
+    color: #fff;
+    height: 40px;
+    margin-top: 20px;
+}
+
+@media only screen and (max-width: 320px) {
+    .App{
+        padding: 20px;
+    }
+}

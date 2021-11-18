@@ -1,0 +1,89 @@
+header {
+    overflow: hidden;
+    background: #202124;
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+}
+
+header a, header label {
+    display: block;
+    padding: 20px;
+    color: #aaa;
+    text-decoration: none;
+    line-height: 20px;
+}
+
+header a:hover, header label:hover {
+    color: #fff; 
+}
+
+header label {
+    float: right;
+    padding: 18px 20px;
+    cursor: pointer;
+}
+
+header label:after {
+    content: "\2261";
+    font-size: 40px;
+}
+
+.logo {
+    float: left;
+    font-weight: bold;
+    color: #fff; 
+    font-size: calc(15px + 2vmin);
+}
+
+nav {
+    float: right;
+    max-height: 0;
+    width: 100%;
+}
+
+nav form{
+    padding: 10px 0 20px 10px;
+}
+
+nav a {
+    padding: 10px;
+    width: 100%;
+}
+
+#nav { display: none; }
+
+#nav:checked ~ nav {
+    max-height: 500px;
+}
+
+@media only screen and (min-width: 700px) {
+
+    header label { display: none; }
+
+    nav {
+        width: auto;
+        max-height: none;
+    }
+
+    nav form{
+        padding-right: 10px; 
+    }
+
+    nav ul {
+        padding: 0;
+        padding-right: 10px;
+    }
+
+    nav li {
+        display: inline-block;
+        text-align: left;
+    }
+
+    header nav a {
+        padding: 20px 10px;
+        display: inline-block;
+        width: auto;
+    }
+
+}

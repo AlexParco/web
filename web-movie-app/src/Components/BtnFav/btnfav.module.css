@@ -1,0 +1,14 @@
+.fav{
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    font-size: 10px;
+}
+
+.fav span{
+    font-size: 25px;
+    transition: .4s;
+    color: #757575;
+    font-size: 25px;
+}
+

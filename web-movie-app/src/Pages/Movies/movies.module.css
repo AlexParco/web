@@ -1,0 +1,10 @@
+.movie-grid{
+    min-height: 100vh;
+    padding: 50px;
+    padding-top: 100px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    grid-gap: 24px;
+    align-items: start;
+    justify-items: center;
+}

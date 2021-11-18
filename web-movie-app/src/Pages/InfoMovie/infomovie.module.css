@@ -1,0 +1,45 @@
+.movie-page{
+    width: 80%;
+    margin: auto;
+    min-height: 100vh;
+    color: #fff;
+    display: flex;
+    flex: wrap;
+    gap: 30px;
+    align-items: center;
+}
+
+
+.movie-page-img img{
+    border-radius: 2%;
+    min-width: 250px;
+    max-width: 250px;
+}
+
+
+.movie-page-info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+
+}
+.movie-page-info span {
+    white-space: normal;
+    font-size: 18px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .movie-page {
+        flex-wrap: nowrap;
+        flex-direction: column;
+        padding:  100px 0 20px 0px;
+        align-items: center;
+    }
+
+    .movie-page-img{
+        border-radius: 2%;
+        max-width: 250px;
+    }
+}
