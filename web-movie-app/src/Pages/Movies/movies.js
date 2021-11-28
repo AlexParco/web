@@ -1,16 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { CardMovie } from '../../Components/CadMovie/cardmovie';
-import { GetMovies } from "../../Services/MovieServices"
+import useMovie from "../../Hooks/useMovie"
 import css from "./movies.module.css";
 
 // movies page
 export const Movies = () => {
-    const [movies, setMovies] = useState([])
-
-    useEffect(() => {
-        GetMovies()
-        .then(res => setMovies(res))
-    },[setMovies])
+    const { movies } = useMovie()
 
     return (
         <div className={css["movie-grid"]}>

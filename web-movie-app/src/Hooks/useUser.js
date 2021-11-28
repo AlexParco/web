@@ -1,10 +1,10 @@
 import {useCallback, useContext, useState} from 'react';
-import { loginService } from '../Services/UserServices';
-import { AddFavs } from '../Services/MovieServices';
+import { loginService, profileService, uploadImgService } from '../Services/UserServices';
+import { AddFavs, UpdateCommentService } from '../Services/MovieServices';
 import Context from '../Context/userContext';
 
 export default function useUser() {
-    const {jwt, user, favs, setJWT, setUser, setFavs} = useContext(Context)
+    const {jwt, user, setJWT, setUser, favs, setFavs} = useContext(Context)
     const [state, setState] = useState({error: false})
 
     const login = useCallback( ({email, password})=> {
@@ -13,14 +13,13 @@ export default function useUser() {
         .then(data => {
 
             window.sessionStorage.setItem('jwt', data.JWT)
-            window.sessionStorage.setItem('user', JSON.stringify(data.user))
             setState({error: false})
-            setUser(JSON.stringify(data.user))
+            setUser(data.user)
             setJWT(data.JWT)
 
         }).catch(err => {
             setState({error: true})
-            console.log("error")
+            console.log(err)
             window.sessionStorage.removeItem('jwt')
             window.sessionStorage.removeItem('user')
         })
@@ -46,20 +45,39 @@ export default function useUser() {
         })
     },[jwt, setFavs])
 
+    const uploadImg = (img) => {
+        uploadImgService(img)
+        .catch(err => console.log(err))
+    }
+
+    const updateProfile = useCallback((credentials) => {
+        profileService(credentials, jwt)
+        .then(res => setUser(res))
+        .catch(err => console.log(err))
+    },[jwt, setUser])
+
+    const updateComment = useCallback((credentials) => {
+        UpdateCommentService(jwt, credentials)
+        .then(res => setFavs(res))
+        .catch(err => console.log(err))
+    },[setFavs, jwt])
+    
     return {
         login,
         logout,
         addFav,
+        updateProfile,
+        uploadImg,
         isLogged: Boolean(jwt),
 
         state,
         setState,
-        user,
+        user: user,
         setUser,
         favs,
         setFavs,
+        updateComment
     }
 }
-
 
 

@@ -1,51 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useUser from '../../Hooks/useUser';
-import Modal from '../Modal/modal'
+import { useHistory } from "react-router-dom";
 
-import { Login } from "../../Pages/Login/login";
 import css from "./btnfav.module.css";
+import swal from 'sweetalert';
 
-export const Fav = ({id, comment="", title}) =>{
-    const {isLogged, addFav, favs} = useUser()
-    const [showModal, setShowModal] = useState(false);
-
-    console.log(favs)
-    let favArrayTitles = favs.map((item) => {return item.title})
-    
-    const isFaved = favArrayTitles.some(e => e === title)
+export const Fav = ({id, comment="Add comment for this movie", title}) =>{
+    const { isLogged, addFav, favs } = useUser()
+    let history = useHistory();
+    const [emoji, setEmoji] = useState("❤️");
 
     const handleClick = () => {
         if (!isLogged) {
-            return setShowModal(true)
+            swal({
+                title: "Warning",
+                text: "You need login for add to favs",
+                icon: "warning",
+                button: "Ok",
+                timer: "2000"
+            })
+            history.push("/login")
         };
         addFav({movie_id: id, comment});
     };
 
-    const handleClose = () => {
-        setShowModal(false);
-    };
+    useEffect(() => {
+        favs.filter((fav) => fav.title === title && setEmoji("❌"));
+    },[title, favs]);
 
-    const handleLogin = () => {
-        setShowModal(false);
-    };
-
-    const [emoji] = isFaved
-        ? [ "❌"]
-        : [ "❤️"];
-
+    console.log(emoji)
     return(
-        <>
-            <button className={css["fav"]} onClick={handleClick}>
-                <span role="img">
-                  {emoji}
-                </span>
-            </button>
-            {showModal && (
-                <Modal onClose={handleClose}>
-                  <Login onLogin={handleLogin} />
-                </Modal>
-            )}
-        </>
+        <button className={css["fav"]} onClick={handleClick}>
+            {emoji}
+        </button>
     )
 }
-

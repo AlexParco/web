@@ -25,9 +25,14 @@
 .modal-content .btn {
     display: block;
     position: absolute;
+    color: white;
     background: #303134;
     width: 30px;
     height: 30px;
     border: 0px;
+}
+
+.modal-content .btn:hover {
+    background-color: #111;
 }
 

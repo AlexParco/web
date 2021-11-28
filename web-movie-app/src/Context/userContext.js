@@ -5,27 +5,36 @@ const Context = React.createContext({})
 
 export function UserContextProvider({ children }) {
     const [favs, setFavs] = useState([])
-    const [user, setUser] = useState(() => window.sessionStorage.getItem('user'))
+    const [user, setUser] = useState({})
     const [jwt, setJWT] = useState(() => window.sessionStorage.getItem('JWT'))
 
     useEffect(() => {
-        if (!jwt) return setFavs([])
-        async function fetchData(){
-            const data = await GetFavs(jwt)
-            setFavs(data)
+        if(!jwt) return setFavs([])
+        GetFavs(jwt)
+        .then(res =>{ 
+            console.log(!res)
+            if(!res){
+                setFavs([])
+                return
+            }
+            setFavs(res)
+            console.log(res)
+        })
+        .catch(err =>{ 
+            console.log(err)
+            setFavs([])
         }
-        fetchData()
-    }, [jwt])
+    )}, [jwt, setFavs])
 
     return ( 
         <Context.Provider value = {
             {
-                favs,
                 jwt,
                 user,
-                setFavs,
                 setJWT,
-                setUser
+                setUser,
+                favs,
+                setFavs
             }}>
             { children } 
         </Context.Provider>

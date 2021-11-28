@@ -1,0 +1,32 @@
+.form-img{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-img label{
+    transition: 0.3s;
+}
+.form-img label:hover{
+    color: #303134;
+}
+
+.form-img-input{
+    display: none;
+}
+
+
+.form-img-btn{
+    display: block;
+    border: 0;
+    background-color: #303134;
+    border-radius: 2px;
+    margin-top: 10px;
+    font-family: 'SF Mono';
+    padding: 6px;
+    color: white;
+    transition: 0.3s;
+}
+
+.form-img-btn:hover{
+    background-color: #202124;
+}

@@ -22,7 +22,6 @@ export const Login = ({onLogin}) => {
         e.preventDefault()
         login({email, password})
          if (state){
-            console.log("Good ", state)
             swal({
                 title: "Welcome",
                 text: "Enjoy the most popular movies on MovieApp",
@@ -31,7 +30,6 @@ export const Login = ({onLogin}) => {
                 timer: "5000"
             })
         }else{
-            console.log("Error ", state)
             swal({
                 title: "Error",
                 text: "Your password or email is incorrect",

@@ -7,6 +7,8 @@
     flex: wrap;
     gap: 30px;
     align-items: center;
+    position: relative;
+    flex-direction: column;
 }
 
 
@@ -14,6 +16,7 @@
     border-radius: 2%;
     min-width: 250px;
     max-width: 250px;
+    margin-top: 100px;
 }
 
 
@@ -28,7 +31,20 @@
     white-space: normal;
     font-size: 18px;
 }
+.movie-page-btn{
+    display: flex;
+    font-size: 10px;
+}
 
+.movie-page-interaction{
+    margin-top: 10px;
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 12px;
+}
 
 @media screen and (max-width: 768px) {
   .movie-page {

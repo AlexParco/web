@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 const Context = React.createContext({})
 
-export function UserContextProvider({ children }) {
+export function MovieContextProvider({ children }) {
     const [movies, setMovies] = useState([])
 
     return(
