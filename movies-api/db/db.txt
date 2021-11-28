@@ -1,0 +1,59 @@
+CREATE TABLE movie(
+    id           varchar(100) NOT NULL,
+    title        varchar(100) NOT NULL,
+    `cast`       varchar(250) NULL,
+    release_date varchar(30)  NULL,
+    genre        varchar(100) NULL,
+    description  text not null,
+    director     varchar(100) NULL,
+    imagen		 varchar(100) NOT NULL,
+    CONSTRAINT movie_PK PRIMARY KEY (id)
+)
+
+select * from `user` u 
+
+CREATE TABLE `user`(
+    id       varchar(100) NOT NULL,
+    username varchar(100) NOT NULL,
+    email 	 varchar(100) NOT NULL,
+    password varchar(100) NOT NULL,
+    CONSTRAINT user_PK PRIMARY KEY (id),
+    CONSTRAINT user_UN UNIQUE KEY (username)
+)
+
+
+CREATE TABLE fav_movie (
+    user_id  varchar(100) NOT NULL,
+    movie_id varchar(100) NOT NULL,
+    comment  varchar(300) NULL,
+    CONSTRAINT fav_movir_PK PRIMARY KEY (user_id, movie_id),
+    CONSTRAINT fav_movie_FK FOREIGN KEY (user_id) REFERENCES tests.`user` (id) ON DELETE CASCADE,
+    CONSTRAINT fav_movie_FK_1 FOREIGN KEY (movie_id) REFERENCES tests.movie (id)
+)
+
+
+CREATE VIEW vista_fav_movie AS
+SELECT user.id,
+       movie.title,
+       movie.release_date,
+       movie.genre,
+       movie.imagen,
+       fav_movie.comment
+FROM movie JOIN fav_movie ON movie.id = fav_movie.movie_id JOIN user ON user.id = fav_movie.user_id;
+
+select * from vista_fav_movie ;
+
+INSERT INTO movie (id,title,`cast`,release_date,genre,description,director,imagen) VALUES
+	 ('66f463fd-d1dc-4a62-82e8-9e9cf347c8d0','Parasite','Song Kang-ho, Lee Sun-kyun','11/01/2019','Comedy, Thriller, Drama','All unemployed, Ki-taek''s family takes peculiar interest in the wealthy and glamorous Parks for their livelihood until they get entangled in an unexpected incident.','Bong Joon-ho','parasite.jpg'),
+	 ('67f463fd-d1dc-4a62-82e8-9e9cf347c8d0','Wolfwalkers','Honor Kneafsey, Eva Whittaker','10/26/2020','Animation, Family, Adventure','In a time of superstition and magic, when wolves are seen as demonic and nature an evil to be tamed, a young apprentice hunter comes to Ireland with her father to wipe out the last pack. But when she saves a wild native girl, their friendship leads her to discover the world of the Wolfwalkers and transform her into the very thing her father is tasked to destroy.','Tomm Moore','wolfwakers.jpg'),
+	 ('68f463fd-d1dc-4a62-82e8-9e9cf347c8d0','The Pianist','Adrien Brody, Thomas Kretschmann','03/28/2003','Drama, War','The true story of pianist Wladyslaw Szpilman''s experiences in Warsaw during the Nazi occupation. When the Jews of the city find themselves forced into a ghetto, Szpilman finds work playing in a café; and when his family is deported in 1942, he stays behind, works for a while as a laborer, and eventually goes into hiding in the ruins of the war-torn city.','Roman Polanski','pianist.jpg'),
+	 ('69f463fd-d1dc-4a62-82e8-9e9cf347c8d0','Ikiru','Takashi Shimura, Haruo Tanaka','10/09/1952','Drama','Kanji Watanabe is a middle-aged man who has worked in the same monotonous bureaucratic position for decades. Learning he has cancer, he starts to look for the meaning of his life.','Akira Kurosawa','ikiru.jpg'),
+	 ('6af463fd-d1dc-4a62-82e8-9e9cf347c8d0','One Flew Over the Cuckoo''s Nest','Jack Nicholson, Louise Fletcher','11/18/1975','Drama','While serving time for insanity at a state mental hospital, implacable rabble-rouser, Randle Patrick McMurphy, inspires his fellow patients to rebel against the authoritarian rule of head nurse, Mildred Ratched.','Miloš Forman','oneflew.jpg'),
+	 ('6df463fd-d1dc-4a62-82e8-9e9cf347c8d0','High and Low','Toshiro Mifune, Tatsuya Nakadai','11/26/1963','Crime, Drama, Mystery','An executive of a shoe company becomes a victim of extortion when his chauffeur''s son is kidnapped and held for ransom.','Akira Kurosawa','high.jpg'),
+	 ('6ef463fd-d1dc-4a62-82e8-9e9cf347c8d0','We All Loved Each Other So Much','Nino Manfredi, Vittorio Gassman','12/21/1974','Drama, Comedy','Three partisans bound by a strong friendship return home after the war, but the clash with everyday reality puts a strain on their bond.','Ettore Scola','amati.jpg'),
+	 ('6ff463fd-d1dc-4a62-82e8-9e9cf347c8d0','Bicycle Thieves','Lamberto Maggiorani, Enzo Staiola','12/12/1949','Drama','A working man''s livelihood is threatened when someone steals his bicycl','Vittorio De Sica','bicycle.jpg'),
+	 ('70f463fd-d1dc-4a62-82e8-9e9cf347c8d0','Stalker','Aleksandr Kaydanovskiy, Anatoliy Solonitsyn','08/01/1979','Science Fiction, Drama','Near a gray and unnamed city is the Zone, a place guarded by barbed wire and soldiers, and where the normal laws of physics are victim to frequent anomalies. A stalker guides two men into the Zone, specifically to an area in which deep-seated desires are granted.','Andrei Tarkovsky','stalker.jpg');
+INSERT INTO movie (id,title,`cast`,release_date,genre,description,director,imagen) VALUES
+	 ('71f463fd-d1dc-4a62-82e8-9e9cf347c8d0','Saving Private Ryan','Tom Hanks, Tom Sizemore','07/24/1998','Drama, History, War','As U.S. troops storm the beaches of Normandy, three brothers lie dead on the battlefield, with a fourth trapped behind enemy lines. Ranger captain John Miller and seven men are tasked with penetrating German-held territory and bringing the boy home.','Steven Spielberg','saving.jpg'),
+	 ('72f463fd-d1dc-4a62-82e8-9e9cf347c8d0','La Dolce Vita','Marcello Mastroianni, Anita Ekberg','04/19/1961','Comedy, Drama','Journalist and man-about-town Marcello struggles to find his place in the world, torn between the allure of Rome''s elite social scene and the stifling domesticity offered by his girlfriend, all the while searching for a way to become a serious writer.','Federico Fellini','dolce.jpg'),
+	 ('73f463fd-d1dc-4a62-82e8-9e9cf347c8d0','Dune','Timothée Chalamet, Rebecca Ferguson','10/22/2021','Science Fiction, Adventure','Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe to ensure the future of his family and his people. As malevolent forces explode into conflict over the planet''s exclusive supply of the most precious resource in existence-a commodity capable of unlocking humanity''s greatest potential-only those who can conquer their fear will survive.','Denis Villeneuve','dune.jpg');

@@ -68,6 +68,16 @@ func (m *MovieServices) GetOne(movieTitle string) (MovieCMD, error){
     return movie, nil
 }
 
+func (m *MovieServices) Delete(movieId string) error {
+	query := `DELETE FROM movie WHERE id=?`
+	_, err := m.Exec(query, movieId)
+
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
 func (m *MovieServices) GetFav(userID string) ([]FavMovie, error){
     var FavMovies []FavMovie
 
@@ -88,7 +98,7 @@ func (m *MovieServices) GetFav(userID string) ([]FavMovie, error){
     return FavMovies, nil
 }
 
-func (m *MovieServices) AddMovie(movie FavList) error {
+func (m *MovieServices) AddFavMovie(movie FavList) error {
 	query := `INSERT INTO fav_movie (user_id, movie_id, comment) VALUES (?, ?, ?)`
 	_, err := m.Exec(query, movie.UserId, movie.MovieId, movie.Comment)
 
@@ -97,4 +107,25 @@ func (m *MovieServices) AddMovie(movie FavList) error {
 	}
 	return nil
 }
+
+func (m *MovieServices) AddMovie(movie MovieCMD) error {
+	query := `INSERT INTO movie VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+	_, err := m.Exec(query, movie.Id, movie.Title, movie.Cast, movie.ReleaseDate, movie.Genre, movie.Description, movie.Director, movie.Imagen)
+
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (m *MovieServices) Update(movie FavMovie) error {
+    query := `UPDATE vista_fav_movie SET comment=? WHERE title=? AND id=?`
+    if _, err := m.Exec(query, movie.Comment, movie.Title, movie.Id); err != nil{
+        return err
+    }
+
+    return nil
+}
+
+
 
