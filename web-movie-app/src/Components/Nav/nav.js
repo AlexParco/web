@@ -30,7 +30,6 @@ export const Nav = () => {
             </>
         )
     }
-    console.log(isLogged)
     return(
         <header>
             <Link to="/movie" className="logo">Home</Link>

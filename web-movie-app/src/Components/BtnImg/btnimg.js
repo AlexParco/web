@@ -8,14 +8,12 @@ export const BtnImg = () => {
 
     const subirArchivo = (e) =>{
         setArchivo(e[0])
-        console.log(e[0])
     }
 
     const insertarArchivos = async (e) => {
         e.preventDefault()
         const img = new FormData();
         img.append("file", archivo)
-        console.log(archivo.name)
        
         uploadImg(img)
         updateProfile({"profile_img": archivo.name})

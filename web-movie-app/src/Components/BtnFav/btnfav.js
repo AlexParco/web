@@ -28,7 +28,6 @@ export const Fav = ({id, comment="Add comment for this movie", title}) =>{
         favs.filter((fav) => fav.title === title && setEmoji("❌"));
     },[title, favs]);
 
-    console.log(emoji)
     return(
         <button className={css["fav"]} onClick={handleClick}>
             {emoji}

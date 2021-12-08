@@ -22,17 +22,17 @@ export const BtnComment = ({title}) => {
 
     return (
         <>
-        <button onClick={handleClick} className="btn_comment"></button>
-        {
-            showModal && (
-                <Modal onClose={handleClose}>
-                    <div className="form_comment">
-                        <input onChange={e => setComment(e.target.value)} className="input_comment" type='text' placeholder="What's up!" />
-                        <button onClick={handleSend}> Submit </button>
-                    </div>
-                </Modal>
-            )
-        }
+            <button onClick={handleClick} className="btn_comment">✏️</button>
+            {
+                showModal && (
+                    <Modal onClose={handleClose}>
+                        <div className="form_comment">
+                            <input onChange={e => setComment(e.target.value)} className="input_comment" type='text' placeholder="What's up!" />
+                            <button onClick={handleSend}> Submit </button>
+                        </div>
+                    </Modal>
+                )
+            }
         </>
     )
 }

@@ -41,7 +41,6 @@ export default function useUser() {
         .then(data => {
             setFavs(data)
         }).catch(err => {
-            console.log(err)
         })
     },[jwt, setFavs])
 

@@ -12,17 +12,14 @@ export function UserContextProvider({ children }) {
         if(!jwt) return setFavs([])
         GetFavs(jwt)
         .then(res =>{ 
-            console.log(!res)
             if(!res){
                 setFavs([])
                 return
             }
             setFavs(res)
-            console.log(res)
         })
         .catch(err =>{ 
             console.log(err)
-            setFavs([])
         }
     )}, [jwt, setFavs])
 

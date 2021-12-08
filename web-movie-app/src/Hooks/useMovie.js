@@ -11,7 +11,6 @@ export default function useMovies(){
         .catch(err => console.log(err))
     },[setMovies])
 
-
     return {
         movies,
         setMovies,
